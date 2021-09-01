@@ -18,6 +18,8 @@ import com.cloudwebrtc.webrtc.utils.ConstraintsArray;
 import com.cloudwebrtc.webrtc.utils.ConstraintsMap;
 import com.cloudwebrtc.webrtc.utils.EglUtils;
 import com.cloudwebrtc.webrtc.utils.ObjectType;
+import com.cloudwebrtc.webrtc.utils.H264DecoderFactory;
+import com.cloudwebrtc.webrtc.utils.H264EncoderFactory;
 
 import org.webrtc.AudioTrack;
 import org.webrtc.CryptoOptions;
@@ -155,8 +157,8 @@ public class MethodCallHandlerImpl implements MethodCallHandler, StateProvider {
 
     mFactory = PeerConnectionFactory.builder()
             .setOptions(new Options())
-            .setVideoEncoderFactory(new DefaultVideoEncoderFactory(eglContext, false, true))
-            .setVideoDecoderFactory(new DefaultVideoDecoderFactory(eglContext))
+            .setVideoEncoderFactory(new H264EncoderFactory(eglContext, false, true))
+            .setVideoDecoderFactory(new H264DecoderFactory(eglContext))
             .setAudioDeviceModule(audioDeviceModule)
             .createPeerConnectionFactory();
   }
